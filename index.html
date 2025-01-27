@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Legal - DPDPA Compliance Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a4e69;
+            --secondary-color: #9a8c98;
+            --accent-color: #c9ada7;
+            --background-color: #f2e9e4;
+            --text-color: #22223b;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        
+        header ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        header li {
+            margin-left: 20px;
+        }
+        
+        #branding h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+        }
+        
+        #showcase {
+            background: linear-gradient(rgba(74, 78, 105, 0.8), rgba(74, 78, 105, 0.8)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 60px;
+        }
+        
+        #showcase h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        #showcase p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+        
+        #dpdpa, #how-it-works, #premium {
+            padding: 50px 0;
+            background-color: #fff;
+        }
+        
+        #dpdpa h2, #how-it-works h2, #premium h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .dpdpa-content, .how-it-works-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .dpdpa-text, .how-it-works-steps {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .dpdpa-importance, .how-it-works-image {
+            flex: 1;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .how-it-works-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            background: var(--accent-color);
+        }
+        
+        .button {
+            display: inline-block;
+            font-size: 1em;
+            padding: 10px 30px;
+            background: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .button:hover {
+            background: var(--secondary-color);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        
+        .steps {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .steps li {
+            margin-bottom: 20px;
+            padding-left: 50px;
+            position: relative;
+        }
+        
+        .steps li:before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--primary-color);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        #premium {
+            background-color: var(--background-color);
+        }
+        
+        .premium-features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .premium-feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            flex-basis: calc(50% - 20px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .premium-feature i {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .premium-feature h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        @media(max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+            
+            header {
+                padding: 1rem 0;
+            }
+            
+            header .container {
+                flex-direction: column;
+            }
+            
+            header ul {
+                margin-top: 1rem;
+            }
+            
+            #showcase h1 {
+                font-size: 2.5em;
+            }
+            
+            .dpdpa-content, .how-it-works-content {
+                flex-direction: column;
+            }
+            
+            .dpdpa-text, .dpdpa-importance, .how-it-works-steps, .how-it-works-image {
+                padding: 0;
+                margin-bottom: 30px;
+            }
+            
+            .premium-feature {
+                flex-basis: 100%;
+            }
+        }
+
+        .process-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--background-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .step-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .process-arrow {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .process-diagram {
+                flex-direction: column;
+            }
+
+            .process-arrow {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Check</span> Legal</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#dpdpa">About DPDPA</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#premium">Premium</a></li>
+                    <li><a href="#" id="demoButton">Demo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>Privacy Policy Analysis for DPDPA Compliance</h1>
+            <p>Ensure your organization's compliance with the Digital Personal Data Protection Act in just two easy steps!</p>
+            <a href="#" class="button" id="demoButton2">Try Our DPDPA Analysis Demo</a>
+        </div>
+    </section>
+
+    <section id="dpdpa">
+        <div class="container">
+            <h2>Understanding the DPDPA</h2>
+            <div class="dpdpa-content">
+                <div class="dpdpa-text">
+                    <p>The Digital Personal Data Protection Act (DPDPA) is a comprehensive data protection law that aims to safeguard individuals' personal information in the digital age. It sets guidelines for the collection, use, and disclosure of personal data by organizations.</p>
+                    <p>As legal professionals, ensuring compliance with DPDPA is crucial for protecting your clients and their businesses from potential legal issues and reputational damage.</p>
+                </div>
+                <div class="dpdpa-importance">
+                    <h3>Why is DPDPA Important?</h3>
+                    <ul>
+                        <li>Protects individuals' right to privacy</li>
+                        <li>Establishes clear rules for data handling</li>
+                        <li>Promotes trust between businesses and consumers</li>
+                        <li>Aligns with international data protection standards</li>
+                        <li>Imposes significant penalties for non-compliance</li>
+                    </ul>
+                    <a href="#" class="button" id="demoButton3">Start Your DPDPA Analysis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="how-it-works-content">
+                <div class="how-it-works-steps">
+                    <h3>Analyze Your Privacy Policy in Two Easy Steps</h3>
+                    <div class="process-diagram">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Input Your Privacy Policy</h4>
+                                <p>Paste your privacy policy text into our analysis tool.</p>
+                            </div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Click Analysis</h4>
+                                <p>Our AI system analyzes your policy for DPDPA compliance.</p>
+                            </div>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Get Results</h4>
+                                <p>Receive a comprehensive compliance report instantly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p>It's that simple! Get instant insights into your DPDPA compliance status and take action to protect your organization.</p>
+                    <a href="#" class="button" id="demoButton4">Try It Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="premium">
+        <div class="container">
+            <h2>Upgrade to Premium</h2>
+            <p>Enhance your DPDPA compliance analysis with our premium features:</p>
+            <div class="premium-features">
+                <div class="premium-feature">
+                    <i class="fas fa-file-pdf fa-3x"></i>
+                    <h3>PDF Upload Support</h3>
+                    <p>Easily analyze privacy policies in PDF format. Simply upload your PDF file, and our system will extract and analyze the text automatically.</p>
+                </div>
+                <div class="premium-feature">
+                    <i class="fas fa-history fa-3x"></i>
+                    <h3>Analysis History</h3>
+                    <p>Keep track of all your previous analyses. Compare different versions of your privacy policy over time to ensure ongoing compliance.</p>
+                </div>
+                <div class="premium-feature">
+                    <i class="fas fa-headset fa-3x"></i>
+                    <h3>Priority Support</h3>
+                    <p>Get faster response times and dedicated support from our team of DPDPA experts.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" class="button" id="upgradeToPremium">Upgrade to Premium</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Check Legal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('demoButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://check-legal.vercel.app/';
+        });
+
+        document.getElementById('demoButton2').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://check-legal.vercel.app/';
+        });
+
+        document.getElementById('demoButton3').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://check-legal.vercel.app/';
+        });
+
+        document.getElementById('demoButton4').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://check-legal.vercel.app/';
+        });
+
+        document.getElementById('upgradeToPremium').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Upgrade to Premium feature coming soon!');
+        });
+    </script>
+</body>
+</html>
+
