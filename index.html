@@ -25,7 +25,8 @@
         }
         
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
             overflow: hidden;
         }
@@ -55,6 +56,8 @@
         header ul {
             display: flex;
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
         
         header li {
@@ -72,23 +75,23 @@
         
         #showcase {
             background: linear-gradient(rgba(74, 78, 105, 0.8), rgba(74, 78, 105, 0.8)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: #fff;
-            padding-top: 60px;
+            padding: 80px 20px 20px;
         }
         
         #showcase h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 20px;
         }
         
         #showcase p {
-            font-size: 1.3em;
+            font-size: 1.2em;
             margin-bottom: 30px;
         }
         
@@ -105,29 +108,21 @@
         
         .dpdpa-content, .how-it-works-content {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
         }
         
         .dpdpa-text, .how-it-works-steps {
-            flex: 1;
-            padding-right: 30px;
+            margin-bottom: 30px;
         }
         
         .dpdpa-importance, .how-it-works-image {
-            flex: 1;
             background-color: var(--secondary-color);
             color: #fff;
             padding: 30px;
             border-radius: 10px;
-        }
-        
-        .how-it-works-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 300px;
-            background: var(--accent-color);
+            width: 100%;
+            max-width: 500px;
         }
         
         .button {
@@ -180,8 +175,9 @@
         
         .premium-features {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
 
         .premium-feature {
@@ -192,8 +188,8 @@
             background: #fff;
             border-radius: 10px;
             padding: 20px;
-            margin: 10px;
-            flex-basis: calc(50% - 20px);
+            width: 100%;
+            max-width: 300px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -214,59 +210,23 @@
             padding: 20px 0;
             margin-top: 40px;
         }
-        
-        @media(max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-            
-            header {
-                padding: 1rem 0;
-            }
-            
-            header .container {
-                flex-direction: column;
-            }
-            
-            header ul {
-                margin-top: 1rem;
-            }
-            
-            #showcase h1 {
-                font-size: 2.5em;
-            }
-            
-            .dpdpa-content, .how-it-works-content {
-                flex-direction: column;
-            }
-            
-            .dpdpa-text, .dpdpa-importance, .how-it-works-steps, .how-it-works-image {
-                padding: 0;
-                margin-bottom: 30px;
-            }
-            
-            .premium-feature {
-                flex-basis: 100%;
-            }
-        }
 
         .process-diagram {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             margin: 40px 0;
-            flex-wrap: wrap;
         }
 
         .process-step {
-            flex: 1;
-            min-width: 200px;
+            width: 100%;
+            max-width: 300px;
             text-align: center;
             padding: 20px;
             background-color: var(--background-color);
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 10px;
+            margin-bottom: 20px;
         }
 
         .step-number {
@@ -291,17 +251,85 @@
         .process-arrow {
             font-size: 2em;
             color: var(--primary-color);
-            margin: 0 10px;
+            margin: 10px 0;
+            transform: rotate(90deg);
         }
 
-        @media (max-width: 768px) {
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            #showcase h1 {
+                font-size: 3em;
+            }
+
+            #showcase p {
+                font-size: 1.3em;
+            }
+
+            .dpdpa-content, .how-it-works-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .dpdpa-text, .how-it-works-steps {
+                flex: 1;
+                padding-right: 30px;
+                margin-bottom: 0;
+            }
+
+            .dpdpa-importance, .how-it-works-image {
+                flex: 1;
+            }
+
             .process-diagram {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .process-step {
+                margin-bottom: 0;
             }
 
             .process-arrow {
-                transform: rotate(90deg);
-                margin: 20px 0;
+                transform: rotate(0);
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            header nav {
+                display: none;
+                width: 100%;
+                padding-top: 1rem;
+            }
+
+            header nav.show {
+                display: block;
+            }
+
+            header ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header li {
+                margin: 10px 0;
+            }
+
+            header .container {
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -312,7 +340,10 @@
             <div id="branding">
                 <h1><span class="highlight">Check</span> Legal</h1>
             </div>
-            <nav>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="nav">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#dpdpa">About DPDPA</a></li>
@@ -421,7 +452,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Check Legal. All rights reserved.</p>
+        <p>&copy; 2023 Check Legal. All rights reserved.</p>
     </footer>
 
     <script>
@@ -448,6 +479,18 @@
         document.getElementById('upgradeToPremium').addEventListener('click', function(e) {
             e.preventDefault();
             alert('Upgrade to Premium feature coming soon!');
+        });
+
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('nav').classList.toggle('show');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('nav').classList.remove('show');
+            });
         });
     </script>
 </body>
